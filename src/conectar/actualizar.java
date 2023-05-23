@@ -45,7 +45,7 @@ public class actualizar {
         PruebaCOnectar conecta = new PruebaCOnectar();
         Connection con = conecta.getConexion();
 
-        set = Query("Select * from musica", con);
+        set = Query("Select * from musica where musica_id=3", con);
 
         ResultSetMetaData metaDatos = set.getMetaData();
         int numeroColumnas = metaDatos.getColumnCount();
