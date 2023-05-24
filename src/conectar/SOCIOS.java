@@ -20,8 +20,9 @@ public class SOCIOS extends javax.swing.JFrame {
         initComponents();
     }
 
-    SOCIOS(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public SOCIOS(Connection con) {
+        super();
+        initComponents();//ME FALTABA ESTO Y ES IMPORTANTE 
     }
 
     /**

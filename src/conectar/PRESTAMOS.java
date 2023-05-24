@@ -19,8 +19,10 @@ public class PRESTAMOS extends javax.swing.JFrame {
         initComponents();
     }
 
-    PRESTAMOS(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public PRESTAMOS(Connection con) {
+        super();
+        initComponents();
+
     }
 
     /**

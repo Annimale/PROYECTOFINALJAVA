@@ -17,11 +17,14 @@ public class MUSICA extends javax.swing.JFrame {
      * Creates new form MUSICA
      */
     public MUSICA() {
+
         initComponents();
     }
 
-    MUSICA(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public MUSICA(Connection con) {
+        super();
+        initComponents();//ME FALTABA ESTO Y ES IMPORTANTE 
+
     }
 
     /**
