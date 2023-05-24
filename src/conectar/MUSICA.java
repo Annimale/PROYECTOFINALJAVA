@@ -134,13 +134,11 @@ public class MUSICA extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        INSERTAR = new javax.swing.JButton();
         MODIFICAR = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        ACTUALIZAR = new javax.swing.JButton();
         BORRAR = new javax.swing.JButton();
-        LIMPIARCAMPOS = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,10 +184,10 @@ public class MUSICA extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("INSERTAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        INSERTAR.setText("INSERTAR");
+        INSERTAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                INSERTARActionPerformed(evt);
             }
         });
 
@@ -213,24 +211,10 @@ public class MUSICA extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        ACTUALIZAR.setText("ACTUALIZAR ");
-        ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ACTUALIZARActionPerformed(evt);
-            }
-        });
-
         BORRAR.setText("BORRAR");
         BORRAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BORRARActionPerformed(evt);
-            }
-        });
-
-        LIMPIARCAMPOS.setText("LIMPIAR CAMPOS");
-        LIMPIARCAMPOS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LIMPIARCAMPOSActionPerformed(evt);
             }
         });
 
@@ -264,22 +248,14 @@ public class MUSICA extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(INSERTAR, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(LIMPIARCAMPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(ACTUALIZAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(MODIFICAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(BORRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                                .addGap(35, 35, 35)
+                                .addComponent(MODIFICAR)
+                                .addGap(18, 18, 18)
+                                .addComponent(BORRAR)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -309,16 +285,12 @@ public class MUSICA extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(MODIFICAR))
+                .addComponent(INSERTAR)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ACTUALIZAR)
-                    .addComponent(BORRAR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LIMPIARCAMPOS)
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(BORRAR)
+                    .addComponent(MODIFICAR))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
@@ -328,7 +300,7 @@ public class MUSICA extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void INSERTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERTARActionPerformed
         // TODO add your handling code here:
         // Obtener los valores de los campos de texto
         String musica_id = jTextField1.getText();
@@ -370,7 +342,7 @@ public class MUSICA extends javax.swing.JFrame {
         cargarDatos();
         limpiarCampos();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_INSERTARActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -394,7 +366,7 @@ public class MUSICA extends javax.swing.JFrame {
 
     private void MODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MODIFICARActionPerformed
         // TODO add your handling code here:
-        String idPelicula = jTextField1.getText();
+        String idMusica = jTextField1.getText();
         String nuevoTitulo = jTextField2.getText();
         String nuevoartista = jTextField3.getText();
         String nuevoGenero = jTextField4.getText();
@@ -414,7 +386,7 @@ public class MUSICA extends javax.swing.JFrame {
             pstmt.setString(2, nuevoartista);
             pstmt.setString(3, nuevoGenero);
             pstmt.setString(4, nuevaDuracion);
-            pstmt.setString(5, idPelicula);
+            pstmt.setString(5, idMusica);
 
             // Ejecutar la sentencia de modificación
             pstmt.executeUpdate();
@@ -434,17 +406,6 @@ public class MUSICA extends javax.swing.JFrame {
                 limpiarCampos();
                 
     }//GEN-LAST:event_MODIFICARActionPerformed
-
-    private void ACTUALIZARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACTUALIZARActionPerformed
-        // TODO add your handling code here:
-        cargarDatos();
-        
-    }//GEN-LAST:event_ACTUALIZARActionPerformed
-
-    private void LIMPIARCAMPOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LIMPIARCAMPOSActionPerformed
-        // TODO add your handling code here:
-        limpiarCampos();
-    }//GEN-LAST:event_LIMPIARCAMPOSActionPerformed
 
     private void BORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BORRARActionPerformed
         // TODO add your handling code here:
@@ -527,11 +488,9 @@ public class MUSICA extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ACTUALIZAR;
     private javax.swing.JButton BORRAR;
-    private javax.swing.JButton LIMPIARCAMPOS;
+    private javax.swing.JButton INSERTAR;
     private javax.swing.JButton MODIFICAR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

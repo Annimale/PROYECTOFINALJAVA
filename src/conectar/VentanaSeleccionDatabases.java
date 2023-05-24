@@ -124,7 +124,7 @@ public class VentanaSeleccionDatabases extends javax.swing.JFrame {
 
     private void SOCIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SOCIOSActionPerformed
         // TODO add your handling code here:
-         SOCIOS socios = new SOCIOS(con);
+         SOCIOSO socios = new SOCIOSO(con);
             socios.setVisible(true);
     }//GEN-LAST:event_SOCIOSActionPerformed
 

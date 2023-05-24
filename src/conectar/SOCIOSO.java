@@ -8,28 +8,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
 
 /**
  *
  * @author ivamar
  */
-public class MUSICAsa extends javax.swing.JFrame {
+public class SOCIOSO extends javax.swing.JFrame {
 
     /**
-     * Creates new form MUSICA
+     * Creates new form socios
      */
-    public MUSICAsa() {
-
+    public SOCIOSO() {
         initComponents();
     }
 
-    public MUSICAsa(Connection con) {
+    public SOCIOSO(Connection con) {
         super();
-        initComponents();//ME FALTABA ESTO Y ES IMPORTANTE 
+        initComponents();
         cargarDatos();
+        // METODO PARA CLICAR EN LA FILA Y QUE SE AUTORELLENEN LOS CAMPOS
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -39,31 +40,29 @@ public class MUSICAsa extends javax.swing.JFrame {
                 // Verificar si se ha seleccionado una fila
                 if (filaSeleccionada >= 0) {
                     // Obtener los valores de la fila seleccionada
-                    String musica_id = jTable1.getValueAt(filaSeleccionada, 0).toString();
-                    String titulo = jTable1.getValueAt(filaSeleccionada, 1).toString();
-                    String artista = jTable1.getValueAt(filaSeleccionada, 2).toString();
-                    String genero = jTable1.getValueAt(filaSeleccionada, 3).toString();
-                    String duracion = jTable1.getValueAt(filaSeleccionada, 4).toString();
+                    String socioId = jTable1.getValueAt(filaSeleccionada, 0).toString();
+                    String nombre = jTable1.getValueAt(filaSeleccionada, 1).toString();
+                    String direccion = jTable1.getValueAt(filaSeleccionada, 2).toString();
+                    String telefono = jTable1.getValueAt(filaSeleccionada, 3).toString();
 
                     // Establecer los valores en los campos de texto
-                    jTextField1.setText(musica_id);
-                    jTextField2.setText(titulo);
-                    jTextField3.setText(artista);
-                    jTextField4.setText(genero);
-                    jTextField5.setText(duracion);
+                    jTextField1.setText(socioId);
+                    jTextField2.setText(nombre);
+                    jTextField3.setText(direccion);
+                    jTextField4.setText(telefono);
                 }
             }
         });
-
     }
+
     private void cargarDatos() {
         try {
             // Crear la conexión a la base de datos
             PruebaCOnectar pruebaConexion = new PruebaCOnectar();
             Connection con = pruebaConexion.getConexion();
 
-            // Crear la sentencia SQL para obtener los datos de la tabla MUSICA
-            String sql = "SELECT * FROM musica";
+            // Crear la sentencia SQL para obtener los datos de la tabla socios
+            String sql = "SELECT * FROM socios";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             // Ejecutar la consulta y obtener el resultado
@@ -105,6 +104,12 @@ public class MUSICAsa extends javax.swing.JFrame {
             System.out.println("Error al cargar los datos: " + e.getMessage());
         }
     }
+    private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,53 +120,32 @@ public class MUSICAsa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        INSERTAR = new javax.swing.JButton();
         MODIFICAR = new javax.swing.JButton();
-        ACTUALIZAR = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         BORRAR = new javax.swing.JButton();
-        LIMPIARCAMPOS = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("MUSICA");
+        jLabel1.setText("SOCIOS");
 
-        jLabel2.setText("Musica ID ");
+        jLabel2.setText("Socios ID");
 
-        jLabel3.setText("Titulo");
+        jLabel3.setText("Nombre");
 
-        jLabel4.setText("Artista");
+        jLabel4.setText("Dirección");
 
-        jLabel5.setText("Genero");
-
-        jLabel6.setText("Duracion");
+        jLabel5.setText("Teléfono");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,20 +171,21 @@ public class MUSICAsa extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        INSERTAR.setText("INSERTAR");
+        INSERTAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                INSERTARActionPerformed(evt);
             }
         });
 
-        jButton1.setText("INSERTAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        MODIFICAR.setText("MODIFICAR ");
+        MODIFICAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                MODIFICARActionPerformed(evt);
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -211,33 +196,12 @@ public class MUSICAsa extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-
-        MODIFICAR.setText("MODIFICAR");
-        MODIFICAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MODIFICARActionPerformed(evt);
-            }
-        });
-
-        ACTUALIZAR.setText("ACTUALIZAR");
-        ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ACTUALIZARActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jTable1);
 
         BORRAR.setText("BORRAR");
         BORRAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BORRARActionPerformed(evt);
-            }
-        });
-
-        LIMPIARCAMPOS.setText("LIMPIAR CAMPOS");
-        LIMPIARCAMPOS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LIMPIARCAMPOSActionPerformed(evt);
             }
         });
 
@@ -248,87 +212,121 @@ public class MUSICAsa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(118, 118, 118)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ACTUALIZAR)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BORRAR))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(MODIFICAR))))))
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(LIMPIARCAMPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(INSERTAR, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(MODIFICAR)
+                                .addGap(18, 18, 18)
+                                .addComponent(BORRAR)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(INSERTAR)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(BORRAR)
                     .addComponent(MODIFICAR))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ACTUALIZAR)
-                    .addComponent(BORRAR))
-                .addGap(18, 18, 18)
-                .addComponent(LIMPIARCAMPOS)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void INSERTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERTARActionPerformed
+        // TODO add your handling code here:
+        // Obtener los valores de los campos de texto
+        String socio_id = jTextField1.getText();
+        String nombre = jTextField2.getText();
+        String direccion = jTextField3.getText();
+        String telefono = jTextField4.getText();
+        
+
+        // Crear la conexión a la base de datos
+        PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+        Connection con = pruebaConexion.getConexion();
+
+        try {
+            // Crear la sentencia SQL de inserción
+            String sql = "INSERT INTO socios (socio_id, nombre, direccion, telefono ) VALUES (?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            // Establecer los valores de los parámetros
+            pstmt.setString(1, socio_id);
+            pstmt.setString(2, nombre);
+            pstmt.setString(3, direccion);
+            pstmt.setString(4, telefono);
+            
+
+            // Ejecutar la sentencia de inserción
+            pstmt.executeUpdate();
+
+            // Cerrar la conexión y el PreparedStatement
+            pstmt.close();
+            con.close();
+
+            // Mostrar mensaje de éxito
+            System.out.println("Inserción exitosa");
+
+        } catch (Exception e) {
+            // Manejar cualquier error
+            System.out.println("Error al insertar en la base de datos: " + e.getMessage());
+        }
+        cargarDatos();
+        limpiarCampos();
+
+    }//GEN-LAST:event_INSERTARActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -346,59 +344,13 @@ public class MUSICAsa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String musica_id = jTextField1.getText();
-        String titulo = jTextField2.getText();
-        String artista = jTextField3.getText();
-        String genero = jTextField4.getText();
-        String duracion = jTextField5.getText();
-
-        // Crear la conexión a la base de datos
-        PruebaCOnectar pruebaConexion = new PruebaCOnectar();
-        Connection con = pruebaConexion.getConexion();
-
-        try {
-            // Crear la sentencia SQL de inserción
-            String sql = "INSERT INTO musica (musica_id, titulo, artista, genero, duracion) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = con.prepareStatement(sql);
-
-            // Establecer los valores de los parámetros
-            pstmt.setString(1, musica_id);
-            pstmt.setString(2, titulo);
-            pstmt.setString(3, artista);
-            pstmt.setString(4, genero);
-            pstmt.setString(5, duracion);
-
-            // Ejecutar la sentencia de inserción
-            pstmt.executeUpdate();
-
-            // Cerrar la conexión y el PreparedStatement
-            pstmt.close();
-            con.close();
-
-            // Mostrar mensaje de éxito
-            System.out.println("Inserción exitosa");
-
-        } catch (Exception e) {
-            // Manejar cualquier error
-            System.out.println("Error al insertar en la base de datos: " + e.getMessage());
-        }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void MODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MODIFICARActionPerformed
         // TODO add your handling code here:
-         String idPelicula = jTextField1.getText();
-        String nuevoTitulo = jTextField2.getText();
-        String nuevoDirector = jTextField3.getText();
-        String nuevoGenero = jTextField4.getText();
-        String nuevaDuracion = jTextField5.getText();
+        String idSocio = jTextField1.getText();
+        String nuevonombre = jTextField2.getText();
+        String nuevodireccion = jTextField3.getText();
+        String nuevotelefono = jTextField4.getText();
+        
 
         // Crear la conexión a la base de datos
         PruebaCOnectar pruebaConexion = new PruebaCOnectar();
@@ -406,15 +358,14 @@ public class MUSICAsa extends javax.swing.JFrame {
 
         try {
             // Crear la sentencia SQL de modificación
-            String sql = "UPDATE peliculas SET titulo = ?, director = ?, genero = ?, duracion = ? WHERE pelicula_id = ?";
+            String sql = "UPDATE socios SET nombre = ?, direccion = ?, telefono = ?,  = ? WHERE socio_id = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             // Establecer los valores de los parámetros
-            pstmt.setString(1, nuevoTitulo);
-            pstmt.setString(2, nuevoDirector);
-            pstmt.setString(3, nuevoGenero);
-            pstmt.setString(4, nuevaDuracion);
-            pstmt.setString(5, idPelicula);
+            pstmt.setString(1, nuevonombre);
+            pstmt.setString(2, nuevodireccion);
+            pstmt.setString(3, nuevotelefono);
+            pstmt.setString(5, idSocio);
 
             // Ejecutar la sentencia de modificación
             pstmt.executeUpdate();
@@ -430,26 +381,52 @@ public class MUSICAsa extends javax.swing.JFrame {
             // Manejar cualquier error
             System.out.println("Error al modificar en la base de datos: " + e.getMessage());
         }
-
+                 cargarDatos();
+                limpiarCampos();
+                
     }//GEN-LAST:event_MODIFICARActionPerformed
 
     private void BORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BORRARActionPerformed
         // TODO add your handling code here:
+         // Obtener el valor del campo de texto "socios ID"
+    String sociosId = jTextField1.getText();
+
+    // Crear la conexión a la base de datos
+    PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+    Connection con = pruebaConexion.getConexion();
+
+    try {
+        // Crear la sentencia SQL de eliminación
+        String sql = "DELETE FROM socios WHERE socio_id = ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+
+        // Establecer el valor del parámetro
+        pstmt.setString(1, sociosId);
+
+        // Ejecutar la sentencia de eliminación
+        int filasEliminadas = pstmt.executeUpdate();
+
+        // Cerrar el PreparedStatement y la conexión
+        pstmt.close();
+        con.close();
+
+        // Mostrar mensaje de éxito si se eliminó al menos una fila
+        if (filasEliminadas > 0) {
+            System.out.println("Elemento eliminado correctamente");
+        } else {
+            System.out.println("No se encontró ningún elemento con el ID proporcionado");
+        }
+
+        // Limpiar los campos de texto y cargar nuevamente los datos en la tabla
+        limpiarCampos();
+        cargarDatos();
+
+    } catch (Exception e) {
+        // Manejar cualquier error
+        System.out.println("Error al eliminar el elemento: " + e.getMessage());
+    }
+        
     }//GEN-LAST:event_BORRARActionPerformed
-
-    private void ACTUALIZARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACTUALIZARActionPerformed
-        // TODO add your handling code here:
-         cargarDatos();
-    }//GEN-LAST:event_ACTUALIZARActionPerformed
-
-    private void LIMPIARCAMPOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LIMPIARCAMPOSActionPerformed
-        // TODO add your handling code here:
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-    }//GEN-LAST:event_LIMPIARCAMPOSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,45 +445,45 @@ public class MUSICAsa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MUSICAsa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SOCIOSO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MUSICAsa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SOCIOSO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MUSICAsa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SOCIOSO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MUSICAsa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SOCIOSO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MUSICAsa().setVisible(true);
+                new SOCIOSO().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ACTUALIZAR;
     private javax.swing.JButton BORRAR;
-    private javax.swing.JButton LIMPIARCAMPOS;
+    private javax.swing.JButton INSERTAR;
     private javax.swing.JButton MODIFICAR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
