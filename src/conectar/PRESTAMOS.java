@@ -5,6 +5,10 @@
 package conectar;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +29,64 @@ public class PRESTAMOS extends javax.swing.JFrame {
 
     }
 
+    private void cargarDatos() {
+        try {
+            // Crear la conexión a la base de datos
+            PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+            Connection con = pruebaConexion.getConexion();
+
+            // Crear la sentencia SQL para obtener los datos de la tabla PELICULAS
+            String sql = "SELECT * FROM prestamos";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            // Ejecutar la consulta y obtener el resultado
+            ResultSet rs = pstmt.executeQuery();
+
+            // Crear un objeto DefaultTableModel para almacenar los datos del ResultSet
+            DefaultTableModel model = new DefaultTableModel();
+
+            // Obtener los metadatos de las columnas
+            ResultSetMetaData metaData = rs.getMetaData();
+
+            // Obtener el número de columnas
+            int columnCount = metaData.getColumnCount();
+
+            // Agregar los nombres de las columnas al modelo
+            for (int i = 1; i <= columnCount; i++) {
+                model.addColumn(metaData.getColumnName(i));
+            }
+
+            // Agregar los datos de las filas al modelo
+            while (rs.next()) {
+                Object[] rowData = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    rowData[i - 1] = rs.getObject(i);
+                }
+                model.addRow(rowData);
+            }
+
+            // Establecer el modelo en el jTable1
+            jTable1.setModel(model);
+
+            // Cerrar la conexión, el PreparedStatement y el ResultSet
+            rs.close();
+            pstmt.close();
+            con.close();
+
+        } catch (Exception e) {
+            // Manejar cualquier error
+            System.out.println("Error al cargar los datos: " + e.getMessage());
+        }
+    }
+
+    private void limpiarCampos() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,21 +96,390 @@ public class PRESTAMOS extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        INSERTAR = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        MODIFICAR = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        BORRAR = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        ATRAS = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("PRESTAMOS");
+
+        INSERTAR.setText("INSERTAR");
+        INSERTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                INSERTARActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Prestamo ID");
+
+        MODIFICAR.setText("MODIFICAR ");
+        MODIFICAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MODIFICARActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Socio ID");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel4.setText("Pelicula ID");
+
+        jLabel5.setText("Musica ID");
+
+        BORRAR.setText("BORRAR");
+        BORRAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BORRARActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Fecha Prestamo");
+
+        ATRAS.setText("ATRAS");
+        ATRAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ATRASActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Fecha Devolución");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Hecho por Iván Torres Marcos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel7))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(MODIFICAR)
+                                .addGap(18, 18, 18)
+                                .addComponent(BORRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(INSERTAR, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(133, 133, 133))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(ATRAS)
+                                .addGap(146, 146, 146))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(162, 162, 162)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(INSERTAR)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MODIFICAR)
+                            .addComponent(BORRAR))
+                        .addGap(18, 18, 18)
+                        .addComponent(ATRAS)
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void INSERTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERTARActionPerformed
+        // TODO add your handling code here:
+        // Obtener los valores de los campos de texto
+        String prestamo_id = jTextField1.getText();
+        String socio_id = jTextField2.getText();
+        String pelicula_id = jTextField3.getText();
+        String musica_id = jTextField4.getText();
+        String fecha_prestamo = jTextField5.getText();
+        String fecha_devolucion = jTextField6.getText();
+
+        // Crear la conexión a la base de datos
+        PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+        Connection con = pruebaConexion.getConexion();
+
+        try {
+            // Crear la sentencia SQL de inserción
+            String sql = "INSERT INTO peliculas (prestamo_id, socio_id, pelicula_id, musica_id, fecha_prestamo,fecha_devolucion) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            // Establecer los valores de los parámetros
+            pstmt.setString(1, prestamo_id);
+            pstmt.setString(2, socio_id);
+            pstmt.setString(3, pelicula_id);
+            pstmt.setString(4, musica_id);
+            pstmt.setString(5, fecha_prestamo);
+            pstmt.setString(6, fecha_devolucion);
+
+            // Ejecutar la sentencia de inserción
+            pstmt.executeUpdate();
+
+            // Cerrar la conexión y el PreparedStatement
+            pstmt.close();
+            con.close();
+
+            // Mostrar mensaje de éxito
+            System.out.println("Inserción exitosa");
+
+        } catch (Exception e) {
+            // Manejar cualquier error
+            System.out.println("Error al insertar en la base de datos: " + e.getMessage());
+        }
+        cargarDatos();
+        limpiarCampos();
+    }//GEN-LAST:event_INSERTARActionPerformed
+
+    private void MODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MODIFICARActionPerformed
+        // TODO add your handling code here:
+        // Obtener los valores de los campos de texto
+String prestamo_id = jTextField1.getText();
+String socio_id = jTextField2.getText();
+String pelicula_id = jTextField3.getText();
+String musica_id = jTextField4.getText();
+String fecha_prestamo = jTextField5.getText();
+String fecha_devolucion = jTextField6.getText();
+
+// Crear la conexión a la base de datos
+PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+Connection con = pruebaConexion.getConexion();
+
+try {
+    // Crear la sentencia SQL de actualización
+    String sql = "UPDATE prestamos SET socio_id = ?, pelicula_id = ?, musica_id = ?, fecha_prestamo = ?, fecha_devolucion = ? WHERE prestamo_id = ?";
+    PreparedStatement pstmt = con.prepareStatement(sql);
+
+    // Establecer los valores de los parámetros
+    pstmt.setString(1, socio_id);
+    pstmt.setString(2, pelicula_id);
+    pstmt.setString(3, musica_id);
+    pstmt.setString(4, fecha_prestamo);
+    pstmt.setString(5, fecha_devolucion);
+    pstmt.setString(6, prestamo_id);
+
+    // Ejecutar la sentencia de actualización
+    pstmt.executeUpdate();
+
+    // Cerrar la conexión y el PreparedStatement
+    pstmt.close();
+    con.close();
+
+    // Mostrar mensaje de éxito
+    System.out.println("Actualización exitosa");
+
+} catch (Exception e) {
+    // Manejar cualquier error
+    System.out.println("Error al actualizar en la base de datos: " + e.getMessage());
+}
+
+// Cargar los datos actualizados en la tabla
+cargarDatos();
+limpiarCampos();
+
+     
+    }//GEN-LAST:event_MODIFICARActionPerformed
+
+    private void BORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BORRARActionPerformed
+        // TODO add your handling code here:
+        String pestamoId = jTextField1.getText();
+
+        // Crear la conexión a la base de datos
+        PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+        Connection con = pruebaConexion.getConexion();
+
+        try {
+            // Crear la sentencia SQL de eliminación
+            String sql = "DELETE FROM peliculas WHERE pelicula_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            // Establecer el valor del parámetro
+            pstmt.setString(1, pestamoId);
+
+            // Ejecutar la sentencia de eliminación
+            int filasEliminadas = pstmt.executeUpdate();
+
+            // Cerrar el PreparedStatement y la conexión
+            pstmt.close();
+            con.close();
+
+            // Mostrar mensaje de éxito si se eliminó al menos una fila
+            if (filasEliminadas > 0) {
+                System.out.println("Elemento eliminado correctamente");
+            } else {
+                System.out.println("No se encontró ningún elemento con el ID proporcionado");
+            }
+
+            // Limpiar los campos de texto y cargar nuevamente los datos en la tabla
+            limpiarCampos();
+            cargarDatos();
+
+        } catch (Exception e) {
+            // Manejar cualquier error
+            System.out.println("Error al eliminar el elemento: " + e.getMessage());
+        }
+
+    }//GEN-LAST:event_BORRARActionPerformed
+
+    private void ATRASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ATRASActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_ATRASActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +517,25 @@ public class PRESTAMOS extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ATRAS;
+    private javax.swing.JButton BORRAR;
+    private javax.swing.JButton INSERTAR;
+    private javax.swing.JButton MODIFICAR;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
