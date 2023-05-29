@@ -30,31 +30,7 @@ public class PELICULAS extends javax.swing.JFrame {
         super();
         initComponents();
         cargarDatos();
-        // METODO PARA CLICAR EN LA FILA Y QUE SE AUTORELLENEN LOS CAMPOS
-        jTable1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // Obtener la fila seleccionada
-                int filaSeleccionada = jTable1.getSelectedRow();
-
-                // Verificar si se ha seleccionado una fila
-                if (filaSeleccionada >= 0) {
-                    // Obtener los valores de la fila seleccionada
-                    String peliculaId = jTable1.getValueAt(filaSeleccionada, 0).toString();
-                    String titulo = jTable1.getValueAt(filaSeleccionada, 1).toString();
-                    String director = jTable1.getValueAt(filaSeleccionada, 2).toString();
-                    String genero = jTable1.getValueAt(filaSeleccionada, 3).toString();
-                    String duracion = jTable1.getValueAt(filaSeleccionada, 4).toString();
-
-                    // Establecer los valores en los campos de texto
-                    jTextField1.setText(peliculaId);
-                    jTextField2.setText(titulo);
-                    jTextField3.setText(director);
-                    jTextField4.setText(genero);
-                    jTextField5.setText(duracion);
-                }
-            }
-        });
+        0
     }
 
     private void cargarDatos() {
@@ -153,6 +129,7 @@ public class PELICULAS extends javax.swing.JFrame {
         jLabel2.setText("Pelicula ID");
 
         MODIFICAR.setBackground(new java.awt.Color(184, 216, 216));
+        MODIFICAR.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         MODIFICAR.setForeground(new java.awt.Color(79, 99, 103));
         MODIFICAR.setText("MODIFICAR ");
         MODIFICAR.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +164,7 @@ public class PELICULAS extends javax.swing.JFrame {
         jLabel5.setText("Género");
 
         BORRAR.setBackground(new java.awt.Color(184, 216, 216));
+        BORRAR.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         BORRAR.setForeground(new java.awt.Color(79, 99, 103));
         BORRAR.setText("BORRAR");
         BORRAR.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +178,7 @@ public class PELICULAS extends javax.swing.JFrame {
         jLabel6.setText("Duración");
 
         ATRAS.setBackground(new java.awt.Color(184, 216, 216));
+        ATRAS.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         ATRAS.setForeground(new java.awt.Color(79, 99, 103));
         ATRAS.setText("ATRAS");
         ATRAS.addActionListener(new java.awt.event.ActionListener() {
@@ -243,6 +222,7 @@ public class PELICULAS extends javax.swing.JFrame {
         jLabel1.setText("PELÍCULAS");
 
         INSERTAR.setBackground(new java.awt.Color(184, 216, 216));
+        INSERTAR.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         INSERTAR.setForeground(new java.awt.Color(79, 99, 103));
         INSERTAR.setText("INSERTAR");
         INSERTAR.addActionListener(new java.awt.event.ActionListener() {
