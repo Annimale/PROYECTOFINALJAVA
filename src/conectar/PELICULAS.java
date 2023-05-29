@@ -30,7 +30,7 @@ public class PELICULAS extends javax.swing.JFrame {
         super();
         initComponents();
         cargarDatos();
-        0
+        
     }
 
     private void cargarDatos() {
