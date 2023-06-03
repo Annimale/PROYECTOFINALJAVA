@@ -25,6 +25,7 @@ public class VentanaSeleccionDatabases extends javax.swing.JFrame {
     public VentanaSeleccionDatabases(Connection con) {
         this.con=con;
         initComponents();
+        setTitle("SELECCIÓN 🎉");
     }
 
     private VentanaSeleccionDatabases() {
@@ -47,101 +48,97 @@ public class VentanaSeleccionDatabases extends javax.swing.JFrame {
         MUSICA = new javax.swing.JButton();
         SOCIOS = new javax.swing.JButton();
         PRESTAMOS = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(238, 245, 219));
-        jPanel1.setForeground(new java.awt.Color(238, 245, 219));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(79, 99, 103));
-        jLabel2.setText("Hecho por Iván Torres Marcos");
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Ponme un 10 Carmen <3");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(79, 99, 103));
-        jLabel1.setText("Seleccione la tabla de la base de datos que quiera modificar:");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seleccionelatabla.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 14, -1, -1));
 
-        PELICULAS.setBackground(new java.awt.Color(79, 99, 103));
-        PELICULAS.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        PELICULAS.setForeground(new java.awt.Color(184, 216, 216));
+        PELICULAS.setBackground(new java.awt.Color(204, 204, 204));
+        PELICULAS.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
+        PELICULAS.setForeground(new java.awt.Color(0, 0, 0));
         PELICULAS.setText("PELÍCULAS");
         PELICULAS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PELICULASActionPerformed(evt);
             }
         });
+        jPanel1.add(PELICULAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 171, 73));
 
-        MUSICA.setBackground(new java.awt.Color(79, 99, 103));
-        MUSICA.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        MUSICA.setForeground(new java.awt.Color(184, 216, 216));
+        MUSICA.setBackground(new java.awt.Color(204, 204, 204));
+        MUSICA.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
+        MUSICA.setForeground(new java.awt.Color(0, 0, 0));
         MUSICA.setText("MÚSICA");
         MUSICA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MUSICAActionPerformed(evt);
             }
         });
+        jPanel1.add(MUSICA, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, 163, 73));
 
-        SOCIOS.setBackground(new java.awt.Color(79, 99, 103));
-        SOCIOS.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        SOCIOS.setForeground(new java.awt.Color(184, 216, 216));
+        SOCIOS.setBackground(new java.awt.Color(204, 204, 204));
+        SOCIOS.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
+        SOCIOS.setForeground(new java.awt.Color(0, 0, 0));
         SOCIOS.setText("SOCIOS");
         SOCIOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SOCIOSActionPerformed(evt);
             }
         });
+        jPanel1.add(SOCIOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 171, 74));
 
-        PRESTAMOS.setBackground(new java.awt.Color(79, 99, 103));
-        PRESTAMOS.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        PRESTAMOS.setForeground(new java.awt.Color(184, 216, 216));
+        PRESTAMOS.setBackground(new java.awt.Color(204, 204, 204));
+        PRESTAMOS.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
+        PRESTAMOS.setForeground(new java.awt.Color(0, 0, 0));
         PRESTAMOS.setText("PRÉSTAMOS");
         PRESTAMOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PRESTAMOSActionPerformed(evt);
             }
         });
+        jPanel1.add(PRESTAMOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 163, 74));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PELICULAS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SOCIOS, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PRESTAMOS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MUSICA, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PELICULAS)
-                    .addComponent(MUSICA))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SOCIOS)
-                    .addComponent(PRESTAMOS))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carita.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 99, 93));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrellita.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 153, 150));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrellita.png"))); // NOI18N
+        jLabel5.setText("jLabel4");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, 153, 150));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carita.png"))); // NOI18N
+        jLabel6.setText("jLabel3");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 99, 93));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carita.png"))); // NOI18N
+        jLabel7.setText("jLabel3");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 470, 99, 93));
+
+        jLabel8.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Hecho por Iván Torres Marcos");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 560, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,7 +148,7 @@ public class VentanaSeleccionDatabases extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
         );
 
         pack();
@@ -224,6 +221,12 @@ public class VentanaSeleccionDatabases extends javax.swing.JFrame {
     private javax.swing.JButton SOCIOS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

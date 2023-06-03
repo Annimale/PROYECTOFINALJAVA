@@ -12,6 +12,7 @@ import java.sql.ResultSetMetaData;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +30,7 @@ public class MUSICA extends javax.swing.JFrame {
     public MUSICA(Connection con) {
         super();
         initComponents();
+        setTitle("MÚSICA 🎵");
         cargarDatos();
         // METODO PARA CLICAR EN LA FILA Y QUE SE AUTORELLENEN LOS CAMPOS
         jTable1.addMouseListener(new MouseAdapter() {
@@ -106,13 +108,14 @@ public class MUSICA extends javax.swing.JFrame {
             System.out.println("Error al cargar los datos: " + e.getMessage());
         }
     }
+
     private void limpiarCampos() {
-    jTextField1.setText("");
-    jTextField2.setText("");
-    jTextField3.setText("");
-    jTextField4.setText("");
-    jTextField5.setText("");
-}
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,48 +145,58 @@ public class MUSICA extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(238, 245, 219));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 309, 149, -1));
 
         jLabel1.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(79, 99, 103));
-        jLabel1.setText("MÚSICA");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/musica.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 6, 222, 75));
 
-        INSERTAR.setBackground(new java.awt.Color(184, 216, 216));
+        INSERTAR.setBackground(new java.awt.Color(204, 204, 204));
         INSERTAR.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        INSERTAR.setForeground(new java.awt.Color(79, 99, 103));
+        INSERTAR.setForeground(new java.awt.Color(0, 0, 0));
         INSERTAR.setText("INSERTAR");
         INSERTAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 INSERTARActionPerformed(evt);
             }
         });
+        jPanel1.add(INSERTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(79, 99, 103));
-        jLabel2.setText("Musica ID");
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Música ID");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 93, -1, -1));
 
-        MODIFICAR.setBackground(new java.awt.Color(184, 216, 216));
+        MODIFICAR.setBackground(new java.awt.Color(204, 204, 204));
         MODIFICAR.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        MODIFICAR.setForeground(new java.awt.Color(79, 99, 103));
+        MODIFICAR.setForeground(new java.awt.Color(0, 0, 0));
         MODIFICAR.setText("MODIFICAR ");
         MODIFICAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MODIFICARActionPerformed(evt);
             }
         });
+        jPanel1.add(MODIFICAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(79, 99, 103));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Título");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 140, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -198,157 +211,87 @@ public class MUSICA extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 560, 339));
+
         jLabel4.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(79, 99, 103));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Artista");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 197, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(79, 99, 103));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Género");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 252, -1, -1));
 
-        BORRAR.setBackground(new java.awt.Color(184, 216, 216));
+        BORRAR.setBackground(new java.awt.Color(204, 204, 204));
         BORRAR.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        BORRAR.setForeground(new java.awt.Color(79, 99, 103));
+        BORRAR.setForeground(new java.awt.Color(0, 0, 0));
         BORRAR.setText("BORRAR");
         BORRAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BORRARActionPerformed(evt);
             }
         });
+        jPanel1.add(BORRAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(79, 99, 103));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Duración");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 304, -1, -1));
 
-        ATRAS.setBackground(new java.awt.Color(184, 216, 216));
+        ATRAS.setBackground(new java.awt.Color(204, 204, 204));
         ATRAS.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        ATRAS.setForeground(new java.awt.Color(79, 99, 103));
+        ATRAS.setForeground(new java.awt.Color(0, 0, 0));
         ATRAS.setText("ATRAS");
         ATRAS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ATRASActionPerformed(evt);
             }
         });
+        jPanel1.add(ATRAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 98, 148, -1));
 
         jLabel7.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(79, 99, 103));
-        jLabel7.setText("Hecho por Iván Torres Marcos");
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Ponme un 10 Carmen <3");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, -1, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 145, 151, -1));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 202, 150, -1));
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 257, 149, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jLabel4)
-                                                .addComponent(jLabel6))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(INSERTAR, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGap(57, 57, 57))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(MODIFICAR)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(BORRAR)
-                                    .addGap(40, 40, 40)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(123, 123, 123)
-                            .addComponent(jLabel1)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(ATRAS)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(INSERTAR)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BORRAR)
-                            .addComponent(MODIFICAR))
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(ATRAS))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/great.png"))); // NOI18N
+        jLabel10.setText("jLabel10");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 220, 170));
+
+        jLabel8.setFont(new java.awt.Font("Carlito", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Hecho por Iván Torres Marcos");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 470, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -358,7 +301,7 @@ public class MUSICA extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -401,7 +344,8 @@ public class MUSICA extends javax.swing.JFrame {
 
         } catch (Exception e) {
             // Manejar cualquier error
-            System.out.println("Error al insertar en la base de datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al insertar en la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
         cargarDatos();
         limpiarCampos();
@@ -464,58 +408,60 @@ public class MUSICA extends javax.swing.JFrame {
 
         } catch (Exception e) {
             // Manejar cualquier error
-            System.out.println("Error al modificar en la base de datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al insertar en la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
-                 cargarDatos();
-                limpiarCampos();
-                
+        cargarDatos();
+        limpiarCampos();
+
     }//GEN-LAST:event_MODIFICARActionPerformed
 
     private void BORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BORRARActionPerformed
         // TODO add your handling code here:
-         // Obtener el valor del campo de texto "Musica ID"
-    String musicaId = jTextField1.getText();
+        // Obtener el valor del campo de texto "Musica ID"
+        String musicaId = jTextField1.getText();
 
-    // Crear la conexión a la base de datos
-    PruebaCOnectar pruebaConexion = new PruebaCOnectar();
-    Connection con = pruebaConexion.getConexion();
+        // Crear la conexión a la base de datos
+        PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+        Connection con = pruebaConexion.getConexion();
 
-    try {
-        // Crear la sentencia SQL de eliminación
-        String sql = "DELETE FROM musica WHERE musica_id = ?";
-        PreparedStatement pstmt = con.prepareStatement(sql);
+        try {
+            // Crear la sentencia SQL de eliminación
+            String sql = "DELETE FROM musica WHERE musica_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
 
-        // Establecer el valor del parámetro
-        pstmt.setString(1, musicaId);
+            // Establecer el valor del parámetro
+            pstmt.setString(1, musicaId);
 
-        // Ejecutar la sentencia de eliminación
-        int filasEliminadas = pstmt.executeUpdate();
+            // Ejecutar la sentencia de eliminación
+            int filasEliminadas = pstmt.executeUpdate();
 
-        // Cerrar el PreparedStatement y la conexión
-        pstmt.close();
-        con.close();
+            // Cerrar el PreparedStatement y la conexión
+            pstmt.close();
+            con.close();
 
-        // Mostrar mensaje de éxito si se eliminó al menos una fila
-        if (filasEliminadas > 0) {
-            System.out.println("Elemento eliminado correctamente");
-        } else {
-            System.out.println("No se encontró ningún elemento con el ID proporcionado");
+            // Mostrar mensaje de éxito si se eliminó al menos una fila
+            if (filasEliminadas > 0) {
+                System.out.println("Elemento eliminado correctamente");
+            } else {
+                System.out.println("No se encontró ningún elemento con el ID proporcionado");
+            }
+
+            // Limpiar los campos de texto y cargar nuevamente los datos en la tabla
+            limpiarCampos();
+            cargarDatos();
+
+        } catch (Exception e) {
+            // Manejar cualquier error
+            JOptionPane.showMessageDialog(this, "Error al insertar en la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
 
-        // Limpiar los campos de texto y cargar nuevamente los datos en la tabla
-        limpiarCampos();
-        cargarDatos();
-
-    } catch (Exception e) {
-        // Manejar cualquier error
-        System.out.println("Error al eliminar el elemento: " + e.getMessage());
-    }
-        
     }//GEN-LAST:event_BORRARActionPerformed
 
     private void ATRASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ATRASActionPerformed
         // TODO add your handling code here:
-                dispose();//ESTO CIERRA EL JFRAME ACTUAL
+        dispose();//ESTO CIERRA EL JFRAME ACTUAL
     }//GEN-LAST:event_ATRASActionPerformed
 
     /**
@@ -562,12 +508,15 @@ public class MUSICA extends javax.swing.JFrame {
     private javax.swing.JButton INSERTAR;
     private javax.swing.JButton MODIFICAR;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
