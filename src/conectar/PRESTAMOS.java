@@ -55,7 +55,7 @@ public class PRESTAMOS extends javax.swing.JFrame {
                     jTextField3.setText(pelicula_id);
                     jTextField4.setText(musica_id);
                     jTextField5.setText(fecha_prestamo);
-                    jTextField5.setText(fecha_devolucion);
+                    jTextField6.setText(fecha_devolucion);
                 }
             }
         });
@@ -118,44 +118,48 @@ public class PRESTAMOS extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+        jTextField6.setText("");
+
     }
+
     private boolean verificarExistenciaPrestamo(Connection con, String prestamo_id) throws Exception {
-    // Crear la sentencia SQL para verificar la existencia del préstamo
-    String sql = "SELECT * FROM prestamos WHERE prestamo_id = ?";
-    PreparedStatement pstmt = con.prepareStatement(sql);
-    pstmt.setString(1, prestamo_id);
+        // Crear la sentencia SQL para verificar la existencia del préstamo
+        String sql = "SELECT * FROM prestamos WHERE prestamo_id = ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, prestamo_id);
 
-    // Ejecutar la consulta y obtener el resultado
-    ResultSet rs = pstmt.executeQuery();
+        // Ejecutar la consulta y obtener el resultado
+        ResultSet rs = pstmt.executeQuery();
 
-    // Verificar si existe alguna fila en el resultado
-    boolean existe = rs.next();
+        // Verificar si existe alguna fila en el resultado
+        boolean existe = rs.next();
 
-    // Cerrar el PreparedStatement y el ResultSet
-    rs.close();
-    pstmt.close();
+        // Cerrar el PreparedStatement y el ResultSet
+        rs.close();
+        pstmt.close();
 
-    return existe;
-}
+        return existe;
+    }
+
     private void modificarPrestamo(Connection con, String prestamo_id, String socio_id, String pelicula_id,
-                               String musica_id, String fecha_prestamo, String fecha_devolucion) throws Exception {
-    // Crear la sentencia SQL para modificar el préstamo
-    String sql = "UPDATE prestamos SET socio_id = ?, pelicula_id = ?, musica_id = ?, fecha_prestamo = ?, " +
-            "fecha_devolucion = ? WHERE prestamo_id = ?";
-    PreparedStatement pstmt = con.prepareStatement(sql);
-    pstmt.setString(1, socio_id);
-    pstmt.setString(2, pelicula_id);
-    pstmt.setString(3, musica_id);
-    pstmt.setString(4, fecha_prestamo);
-    pstmt.setString(5, fecha_devolucion);
-    pstmt.setString(6, prestamo_id);
+            String musica_id, String fecha_prestamo, String fecha_devolucion) throws Exception {
+        // Crear la sentencia SQL para modificar el préstamo
+        String sql = "UPDATE prestamos SET socio_id = ?, pelicula_id = ?, musica_id = ?, fecha_prestamo = ?, "
+                + "fecha_devolucion = ? WHERE prestamo_id = ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, socio_id);
+        pstmt.setString(2, pelicula_id);
+        pstmt.setString(3, musica_id);
+        pstmt.setString(4, fecha_prestamo);
+        pstmt.setString(5, fecha_devolucion);
+        pstmt.setString(6, prestamo_id);
 
-    // Ejecutar la sentencia de modificación
-    pstmt.executeUpdate();
+        // Ejecutar la sentencia de modificación
+        pstmt.executeUpdate();
 
-    // Cerrar el PreparedStatement
-    pstmt.close();
-}
+        // Cerrar el PreparedStatement
+        pstmt.close();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -409,7 +413,7 @@ public class PRESTAMOS extends javax.swing.JFrame {
             pstmt.setString(4, musica_id);
             pstmt.setString(5, fecha_prestamo);
             pstmt.setString(6, fecha_devolucion);
-            
+
             if (fecha_devolucion.compareTo(fecha_prestamo) < 0) {
                 JOptionPane.showMessageDialog(this, "La fecha de devolución no puede ser menor que la fecha de préstamo");
                 return; // Detener la ejecución del método
@@ -445,18 +449,19 @@ public class PRESTAMOS extends javax.swing.JFrame {
         String fecha_devolucion = jTextField6.getText();
 
 // Crear la conexión a la base de datos
-       try { PruebaCOnectar pruebaConexion = new PruebaCOnectar();
-        Connection con = pruebaConexion.getConexion();
- if (verificarExistenciaPrestamo(con, prestamo_id)) {
-            // Realizar la modificación del préstamo
-            modificarPrestamo(con, prestamo_id, socio_id, pelicula_id, musica_id, fecha_prestamo, fecha_devolucion);
-            cargarDatos();
-            limpiarCampos();
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "El préstamo con ID " + prestamo_id + " no existe");
-        }
-        
+        try {
+            PruebaCOnectar pruebaConexion = new PruebaCOnectar();
+            Connection con = pruebaConexion.getConexion();
+            if (verificarExistenciaPrestamo(con, prestamo_id)) {
+                // Realizar la modificación del préstamo
+                modificarPrestamo(con, prestamo_id, socio_id, pelicula_id, musica_id, fecha_prestamo, fecha_devolucion);
+                cargarDatos();
+                limpiarCampos();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "El préstamo con ID " + prestamo_id + " no existe");
+            }
+
             // Crear la sentencia SQL de actualización
             String sql = "UPDATE prestamos SET socio_id = ?, pelicula_id = ?, musica_id = ?, fecha_prestamo = ?, fecha_devolucion = ? WHERE prestamo_id = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -468,8 +473,8 @@ public class PRESTAMOS extends javax.swing.JFrame {
             pstmt.setString(4, fecha_prestamo);
             pstmt.setString(5, fecha_devolucion);
             pstmt.setString(6, prestamo_id);
-            
-             if (fecha_devolucion.compareTo(fecha_prestamo) < 0) {
+
+            if (fecha_devolucion.compareTo(fecha_prestamo) < 0) {
                 JOptionPane.showMessageDialog(this, "La fecha de devolución no puede ser menor que la fecha de préstamo");
                 return; // Detener la ejecución del método
             }
@@ -507,7 +512,7 @@ public class PRESTAMOS extends javax.swing.JFrame {
 
         try {
             // Crear la sentencia SQL de eliminación
-            String sql = "DELETE FROM peliculas WHERE pelicula_id = ?";
+            String sql = "DELETE FROM prestamos WHERE prestamo_id = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             // Establecer el valor del parámetro

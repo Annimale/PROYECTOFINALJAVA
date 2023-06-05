@@ -16,7 +16,7 @@ public class PruebaCOnectar {
     
 
 public static final String USER = "root";
-public static final String CLAVE = "619666mF";
+public static final String CLAVE = "";
 
 public Connection getConexion(){
 
